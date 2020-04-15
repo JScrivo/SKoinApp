@@ -10,7 +10,7 @@ export default class SendPointsPage extends Component{
                 <UserHeader props={this.props}/>
                 <Content style={styles.contentBorder}>
                 <Item regular style={styles.amountInput}>
-                        <Input autoCapitalize="none" placeholder="Amount of Pointss"/>
+                        <Input autoCapitalize="none" placeholder="Amount of Points"/>
                 </Item>
                 <Item regular style={styles.amountInput}>
                         <Input autoCapitalize="none" placeholder="Security Question"/>
