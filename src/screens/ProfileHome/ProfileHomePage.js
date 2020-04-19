@@ -3,17 +3,30 @@ import { Container, Header, Content, Text, Left, Body, Right, Button, Icon, Titl
 import {styles} from './Styles'
 import {HistoryItem, UserHeader} from '../../components/index/'
 import {ScrollView, Dimensions} from 'react-native'
+import {APIgetInfo} from '../../communication/APIinteraction'
 class ProfileHomePage extends Component{
     constructor(props){
         super(props);
-
         console.log('User Session: ' + global.sessionID);
+        console.log('User Hash: ' + global.hash);
+
+        this.state = {json: {Balance: 'Loading', Name: 'Loading'}}
     }
-    
+
+    async componentDidMount(){
+        var json = await APIgetInfo(global.sessionID, global.hash);
+        if(json == null){
+            alert('Error loading user info, returning to login');
+            this.props.navigation.navigate('LoginPage');
+        } else {
+            this.setState({json: json});
+        }
+    }
+
     render(){
         return(
             <Container>
-                <UserHeader props={this.props}/>
+                <UserHeader props={this.props} balance={this.state.json.Balance} userName={this.state.json.Name}/>
                 <Content contentContainerStyle={styles.contentBorder} scrollEnabled={false}>
                     <View>
                     <Button style={styles.scan} large dark transparent>

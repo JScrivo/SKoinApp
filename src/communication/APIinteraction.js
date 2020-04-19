@@ -25,7 +25,7 @@ export async function APIregisterUser(username, email, phoneNum, password){
         const response_1 = response;
         const json = await response_1.json();
         console.log(json);
-        return true;
+        return json.Success;
     }
     catch (error) {
         console.log(error);
@@ -33,39 +33,36 @@ export async function APIregisterUser(username, email, phoneNum, password){
     }
 }
 
-export function APIregisterBusiness(username, email, phoneNum, password, address, name){
+export async function APIregisterBusiness(username, email, phoneNum, password, address, name){
     var userpass = username + password;
 
-    return fetch(url + 'account/register', {
-
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            Hash: userpass,
-            Email: email,
-            Phone: phoneNum,
-            Address: address,
-            Name: name
-        })
-        })
-        .then((response) => {
-            if (!response.ok){
-                throw Error(response.status.Text);
-            }
-            return response;
-        })
-        .then((response) => response.json())
-        .then((json) => {
-            console.log(json);
-            return true;
-        })
-        .catch((error) => {
-            console.log(error);
-            return false;
+    try {
+        const response = await fetch(url + 'account/register', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Hash: userpass,
+                Email: email,
+                Phone: phoneNum,
+                Address: address,
+                Name: name
+            })
         });
+        if (!response.ok) {
+            throw Error(response.status.Text);
+        }
+        const response_1 = response;
+        const json = await response_1.json();
+        console.log(json);
+        return json.Success;
+    }
+    catch (error) {
+        console.log(error);
+        return false;
+    }
 }
 
 export async function APIlogin(username, password){
@@ -89,6 +86,7 @@ export async function APIlogin(username, password){
         const json = await response_1.json();
         console.log(json);
         global.sessionID = json.Id;
+        global.hash = userpass;
         return json.Success;
     }
     catch (error) {
@@ -97,32 +95,34 @@ export async function APIlogin(username, password){
     }
 }
 
-export function APIgetBalance(){
-    return fetch(url + 'account/info', {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            Hash: 'sampletext' //placeholder
-        })
-        })
-        .then((response) => {
-            if (!response.ok){
-                throw Error(response.status.Text);
-            }
-            return response;
-        })
-        .then((response) => response.json())
-        .then((json) => {
-            console.log(json);
-            return json.Balance;
-        })
-        .catch((error) => {
-            console.log(error);
-            return -1;
+export async function APIgetInfo(sessionID, hash){
+    try {
+        const response = await fetch(url + 'account/info', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Id: sessionID,
+                Hash: hash
+            })
         });
+        if (!response.ok) {
+            throw Error(response.status.Text);
+        }
+        const response_1 = response;
+        const json = await response_1.json();
+        console.log(json);
+        if(json.Success){
+            return json;
+        }
+        return null;
+    }
+    catch (error) {
+        console.log(error);
+        return null;
+    }
 }
 
 export function APIsendPoints(amount, recipient){
