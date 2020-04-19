@@ -4,6 +4,12 @@ import {styles} from './Styles'
 import {HistoryItem, UserHeader} from '../../components/index/'
 import {ScrollView, Dimensions} from 'react-native'
 class ProfileHomePage extends Component{
+    constructor(props){
+        super(props);
+
+        console.log('User Session: ' + global.sessionID);
+    }
+    
     render(){
         return(
             <Container>
