@@ -22,8 +22,4 @@ export const styles = EStyleSheet.create({
         height: 90
     },
 
-    scanIcon: {
-        fontSize: 50,
-    }
-
 })

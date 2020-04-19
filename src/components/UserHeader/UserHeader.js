@@ -21,7 +21,7 @@ export default class UserHeader extends Component{
                 </Button>
             </Left>
             <Body>
-                <Title style={styles.font}>UserName</Title>
+        <Title style={styles.font}>{this.props.userName}</Title>
             </Body>
             <Right style={styles.right}>
                 <Button style={{marginLeft: 10}} warning transparent>
