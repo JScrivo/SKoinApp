@@ -30,7 +30,13 @@ class LoginPage extends Component{
                             </Item>
                             <Button style={styles.loginPageButton} onPress={async ()=>{
                                 //this.props.navigation.navigate('HomePage');
-                                if(await APIlogin(this.state.username, this.state.password)) this.props.navigation.navigate('HomePage');
+                                if(await APIlogin(this.state.username, this.state.password)){
+                                    if(global.business){
+                                        this.props.navigation.navigate('BusiHomePage');
+                                    } else {
+                                        this.props.navigation.navigate('UserHomePage');
+                                    }
+                                }
                                 else alert('Username or Password is incorrect, please try again.');
                                 //APIregister();
                             }}>

@@ -6,13 +6,12 @@ import React, { Component } from 'react';
 import UserBusinessRegisterNav from './UserBusinessRegisterNav'
 import UserPageNav from './UserPageNav'
 import BuisnessPageNav from './BuisnessPageNav'
-import {APIlogin} from '../communication/APIinteraction'
+import {pass} from '../communication/APIinteraction'
 const Stack = createStackNavigator();
 export default class LoginRegistrationNav extends Component{
 
     constructor(props){
         super(props)
-        console.log('IS BUSINESS: ' + global.business);
     }
 
     render(){
@@ -26,7 +25,9 @@ export default class LoginRegistrationNav extends Component{
                     <Stack.Screen name = "LoginPage" component = {LoginPage} />
                     <Stack.Screen name = "UserRegister" children = {UserBusinessRegisterNav} />
                     {/* use UserPageNav if user logged with usual account and use BuisnessPageNav it is Buisness Account*/}
-                    <Stack.Screen name = "HomePage" children = {(global.business ? BuisnessPageNav : UserPageNav)} />
+                    <Stack.Screen name = "BusiHomePage" children = {BuisnessPageNav} />
+                    <Stack.Screen name = "UserHomePage" children = {UserPageNav} />
+
                 </Stack.Navigator>
             </NavigationContainer>
         )
