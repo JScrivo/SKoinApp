@@ -10,7 +10,7 @@ class ProfileHomePage extends Component{
         console.log('User Session: ' + global.sessionID);
         console.log('User Hash: ' + global.hash);
 
-        this.state = {json: {Balance: 'Loading', Name: 'Loading'}}
+        this.state = {json: {Balance: 'Loading', Name: 'Loading', Transactions: []}}
     }
 
     async componentDidMount(){
@@ -24,6 +24,18 @@ class ProfileHomePage extends Component{
     }
 
     render(){
+        var trasactionList = [];
+        var transaction;
+        for(var i = 0; i < this.state.json.Transactions.length; i++){
+            transaction = this.state.json.Transactions[i];
+
+            trasactionList.push(
+                <HistoryItem src={require('../../images/logo.png')} key={i} name={transaction.Name} balance={transaction.Amount 
+                    + ' ' + (transaction.Outbound ? 'Sent' : 'Received')}/>
+            );
+        }
+
+
         return(
             <Container>
                 <UserHeader props={this.props} balance={this.state.json.Balance} userName={this.state.json.Name}/>
@@ -38,7 +50,7 @@ class ProfileHomePage extends Component{
                     </View>
                     </View>
                         <ScrollView>
-                            <HistoryItem src={require('../../images/logo.png')} name='hello' balance='120'/>
+                            {trasactionList}
                         </ScrollView>
                 </Content>
             </Container>
