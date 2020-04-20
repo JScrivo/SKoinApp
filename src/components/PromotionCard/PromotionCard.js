@@ -25,7 +25,7 @@ export default class PromotionCard extends Component{
                     
                 </CardItem>
                 <CardItem >
-                <Text style={{fontWeight: 'bold'}}>Description: </Text>
+                <Text style={{fontWeight: 'bold'}}>Description </Text>
                 </CardItem>
                 <CardItem bordered>
               <Body>
@@ -43,7 +43,7 @@ export default class PromotionCard extends Component{
                 </Button>
               </Left>
               <Right>
-                <Text>{this.props.duration + ' hr ago'}</Text>
+                <Text>{this.props.duration + (this.props.duration == 1 ? ' day' : ' days') + ' left'}</Text>
               </Right>
             </CardItem>
             </Card>

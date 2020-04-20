@@ -10,7 +10,7 @@ class ProfileHomePage extends Component{
         console.log('User Session: ' + global.sessionID);
         console.log('User Hash: ' + global.hash);
 
-        this.state = {json: {Balance: 'Loading', Name: 'Loading', Transactions: []}, qrURI: null, historyCodes: null}
+        this.state = {userInfo: {Balance: 'Loading', Name: 'Loading', Transactions: []}, qrURI: null, historyCodes: null}
     }
 
     async componentDidMount(){
@@ -24,7 +24,7 @@ class ProfileHomePage extends Component{
             alert('Error loading user info, returning to login');
             this.props.navigation.navigate('LoginPage');
         } else {
-            this.setState({json: json});
+            this.setState({userInfo: json});
         }
 
         var uri = await APIgetQRURI(global.sessionID);
@@ -41,8 +41,8 @@ class ProfileHomePage extends Component{
     async fetchHistroyCodes(){
         var codes = [];
         var uri;
-        for(var i = 0; i < this.state.json.Transactions.length; i++){
-            uri = await APIgetQRURI(this.state.json.Transactions[i].Id);
+        for(var i = 0; i < this.state.userInfo.Transactions.length; i++){
+            uri = await APIgetQRURI(this.state.userInfo.Transactions[i].Id);
             codes.push({uri: uri});
         }
 
@@ -52,8 +52,8 @@ class ProfileHomePage extends Component{
     render(){
         var trasactionList = [];
         var transaction;
-        for(var i = 0; i < this.state.json.Transactions.length; i++){
-            transaction = this.state.json.Transactions[i];
+        for(var i = 0; i < this.state.userInfo.Transactions.length; i++){
+            transaction = this.state.userInfo.Transactions[i];
 
             trasactionList.push(
                 <HistoryItem src={this.state.historyCodes == null ? require('../../images/logo.png') : this.state.historyCodes[i]} key={i} name={transaction.Name} balance={transaction.Amount 
@@ -64,7 +64,7 @@ class ProfileHomePage extends Component{
 
         return(
             <Container>
-                <UserHeader props={this.props} balance={this.state.json.Balance} userName={this.state.json.Name}/>
+                <UserHeader props={this.props} balance={this.state.userInfo.Balance} userName={this.state.userInfo.Name}/>
                 <Content contentContainerStyle={styles.contentBorder} scrollEnabled={false}>
                     <View>
 

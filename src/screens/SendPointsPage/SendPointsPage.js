@@ -10,7 +10,7 @@ export default class SendPointsPage extends Component{
         console.log('User Session: ' + global.sessionID);
         console.log('User Hash: ' + global.hash);
 
-        this.state = {json: {Balance: 'Loading', Name: 'Loading'}}
+        this.state = {userInfo: {Balance: 'Loading', Name: 'Loading'}}
     }
 
     async componentDidMount(){
@@ -19,7 +19,7 @@ export default class SendPointsPage extends Component{
             alert('Error loading user info, returning to login');
             this.props.navigation.navigate('LoginPage');
         } else {
-            this.setState({json: json});
+            this.setState({userInfo: json});
         }
     }
 
@@ -29,7 +29,7 @@ export default class SendPointsPage extends Component{
     render(){
         return(
             <Container>
-                <UserHeader props={this.props} balance={this.state.json.Balance} userName={this.state.json.Name}/>
+                <UserHeader props={this.props} balance={this.state.userInfo.Balance} userName={this.state.userInfo.Name}/>
                 <Content style={styles.contentBorder}>
                 <Item regular style={styles.amountInput}>
                         <Input autoCapitalize="none" placeholder="Amount of Points"/>

@@ -69,7 +69,7 @@ export async function APIlogin(username, password){
     var userpass = username + password;
 
     try {
-        const response = await fetch(url + 'login', {
+        const response = await fetch(url + 'account/login', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -121,6 +121,32 @@ export async function APIgetInfo(sessionID, hash){
     }
     catch (error) {
         console.log('Get Info: ' + error);
+        return null;
+    }
+}
+
+export async function APIgetPromotions(maxResults){
+    try {
+        const response = await fetch(url + 'promotions', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                MaximumResults: maxResults
+            })
+        });
+        if (!response.ok) {
+            throw Error(response.status.Text);
+        }
+        const response_1 = response;
+        const json = await response_1.json();
+        console.log('Get Promotions: ' + JSON.stringify(json));
+        return json;
+    }
+    catch (error) {
+        console.log('Get Promotions: ' + error);
         return null;
     }
 }
