@@ -3,6 +3,7 @@ import { Container, Content, Item, Input,Button, Icon, H2 } from 'native-base'
 import {styles} from './Styles'
 import {UserHeader, PromotionCard} from '../../components/index'
 import {APIgetInfo} from '../../communication/APIinteraction'
+import QRCodeScanner from 'react-native-qrcode-scanner';
 
 export default class SendPointsPage extends Component{
     constructor(props){

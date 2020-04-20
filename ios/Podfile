@@ -38,6 +38,8 @@ target 'sPoints' do
 
 
 
+  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
+
   target 'sPointsTests' do
     inherit! :search_paths
     # Pods for testing
