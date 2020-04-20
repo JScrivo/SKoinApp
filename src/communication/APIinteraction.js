@@ -125,6 +125,32 @@ export async function APIgetInfo(sessionID, hash){
     }
 }
 
+export async function APIgetQRURI(id){
+    try {
+        const response = await fetch(url + 'qr', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Id: id
+            })
+        });
+        if (!response.ok) {
+            throw Error(response.status.Text);
+        }
+        const response_1 = response;
+        const json = await response_1.json();
+        console.log(json);
+        return json.Data;
+    }
+    catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 export function APIsendPoints(amount, recipient){
 
     return fetch(url + 'account/transfer', {
