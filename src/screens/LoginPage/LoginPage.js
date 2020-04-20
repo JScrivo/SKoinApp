@@ -6,6 +6,7 @@ class LoginPage extends Component{
     constructor(props){
         super(props);
         global.sessionID = '';
+        global.business = false;
         global.hash = '';
         global.json = {}
         //console.log('User Session: ' + global.sessionID);

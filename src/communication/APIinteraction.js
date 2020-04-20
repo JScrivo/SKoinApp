@@ -87,6 +87,7 @@ export async function APIlogin(username, password){
         console.log('Login: ' + JSON.stringify(json));
         global.sessionID = json.Id;
         global.hash = userpass;
+        global.business = json.Enterprise;
         return json.Success;
     }
     catch (error) {
