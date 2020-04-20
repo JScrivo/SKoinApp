@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Container, Content, Form, Item, Input, Text, Header, Left, Button, Icon, Body, Segment, Right, Title} from 'native-base'
 import {styles} from './Styles'
+import { APIregisterBusiness } from '../../communication/APIinteraction'
 class BusinessRegisterPage extends Component{
     render(){
         return(
@@ -23,24 +24,48 @@ class BusinessRegisterPage extends Component{
                 <Text style={styles.textRegistration}>Create a new Business account</Text>
                 <Form style={{alignItems: 'center'}}>
                     <Item regular style={styles.loginPageInput}>
-                        <Input autoCapitalize="none" placeholder="Business Name"/>
+                        <Input autoCapitalize="none" placeholder="Business Name"
+                        onChangeText = {val => this.setState({name: val})}
+                        />
                     </Item>
                     <Item regular style={styles.loginPageInput}>
-                        <Input autoCapitalize="none" placeholder="Email"/>
+                        <Input autoCapitalize="none" placeholder="Username"
+                        onChangeText = {val => this.setState({username: val})}
+                        />
                     </Item>
                     <Item regular style={styles.loginPageInput}>
-                        <Input autoCapitalize="none" placeholder="Phone Number"/>
+                        <Input autoCapitalize="none" placeholder="Email"
+                        onChangeText = {val => this.setState({email: val})}
+                        />
                     </Item>
                     <Item regular style={styles.loginPageInput}>
-                        <Input autoCapitalize="none" placeholder="Address"/>
+                        <Input autoCapitalize="none" placeholder="Phone Number"
+                        onChangeText = {val => this.setState({phone: val})}
+                        />
                     </Item>
                     <Item regular style={styles.loginPageInput}>
-                        <Input autoCapitalize="none" placeholder="Password"/>
+                        <Input autoCapitalize="none" placeholder="Address"
+                        onChangeText = {val => this.setState({address: val})}
+                        />
                     </Item>
                     <Item regular style={styles.loginPageInput}>
-                        <Input autoCapitalize="none" placeholder="Confirm Password"/>
+                        <Input autoCapitalize="none" placeholder="Password"
+                        onChangeText = {val => this.setState({password: val})}
+                        />
                     </Item>
-                    <Button style={styles.loginPageButton}>
+                    <Item regular style={styles.loginPageInput}>
+                        <Input autoCapitalize="none" placeholder="Confirm Password"
+                        onChangeText = {val => this.setState({password2: val})}
+                        />
+                    </Item>
+                    <Button style={styles.loginPageButton}onPress={async ()=>{
+                                if(this.state.password.localeCompare(this.state.password2) == 0){
+                                    if(await APIregisterBusiness(this.state.username, this.state.email, this.state.phone,
+                                        this.state.password, this.state.address, this.state.name)) this.props.navigation.navigate('LoginPage');
+                                } else {
+                                    alert('Passwords do not match');
+                                }
+                            }}>
                             <Text>Join Now!</Text>
                     </Button>
                 </Form>

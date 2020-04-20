@@ -10,10 +10,9 @@ export const styles = EStyleSheet.create({
     scan:{
         borderWidth: 0.5,
         borderColor: '#a7a6ab',
-        borderStyle: 'dashed',
         borderRadius: 16,
         marginTop: 20,
-        height: 210,
+        height: 310,
         flexDirection: 'column',
         justifyContent: 'space-around'
     },
