@@ -178,7 +178,7 @@ export async function APIgetQRURI(id){
     }
 }
 
-export async function APIsendPoints(amount, recipient){
+export async function APIsendPoints(recipient, amount, id, hash){
 
     try {
         const response = await fetch(url + 'account/transfer', {
@@ -190,8 +190,8 @@ export async function APIsendPoints(amount, recipient){
             body: JSON.stringify({
                 Recipient: recipient,
                 Amount: amount,
-                Id: 12344,
-                Hash: 'ABUIAUION' //Placeholders until the api works
+                Id: id,
+                Hash: hash
             })
         });
         if (!response.ok) {
@@ -200,7 +200,7 @@ export async function APIsendPoints(amount, recipient){
         const response_1 = response;
         const json = await response_1.json();
         console.log('Send points: ' + JSON.stringify(json));
-        return true;
+        return json.Success;
     }
     catch (error) {
         console.log('Send points: ' + error);
