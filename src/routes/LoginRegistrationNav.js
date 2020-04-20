@@ -5,6 +5,7 @@ import { NavigationContainer} from '@react-navigation/native';
 import React, { Component } from 'react';
 import UserBusinessRegisterNav from './UserBusinessRegisterNav'
 import UserPageNav from './UserPageNav'
+import BuisnessPageNav from './BuisnessPageNav'
 const Stack = createStackNavigator();
 export default class LoginRegistrationNav extends Component{
     render(){
@@ -17,7 +18,8 @@ export default class LoginRegistrationNav extends Component{
                 <Stack.Navigator headerMode='none'>
                     <Stack.Screen name = "LoginPage" component = {LoginPage} />
                     <Stack.Screen name = "UserRegister" children = {UserBusinessRegisterNav} />
-                    <Stack.Screen name = "HomePage" children = {UserPageNav} />
+                    {/* use UserPageNav if user logged with usual account and use BuisnessPageNav it is Buisness Account*/}
+                    <Stack.Screen name = "HomePage" children = {BuisnessPageNav} />
                 </Stack.Navigator>
             </NavigationContainer>
         )

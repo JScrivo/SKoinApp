@@ -1,5 +1,5 @@
 import {createSwitchNavigator, createAppContainer} from 'react-navigation'
-import { ProfileHomePage, PromotionsPage, SendPointsPage } from '../screens/index'
+import { ProfileHomePage, PromotionsPage, SendPointsPage, BuisnessHomePage } from '../screens/index'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import React, { Component } from 'react';
 
