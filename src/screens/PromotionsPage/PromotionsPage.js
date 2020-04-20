@@ -4,8 +4,9 @@ import {styles} from './Styles'
 import {UserHeader, PromotionCard} from '../../components/index'
 import {ScrollView} from 'react-native'
 import {APIgetInfo, APIgetPromotions} from '../../communication/APIinteraction'
+import {withNavigation} from 'react-navigation'
 
-export default class PromotionsPage extends Component{
+class PromotionsPage extends Component{
     constructor(props){
         super(props);
         console.log('User Session: ' + global.sessionID);
@@ -15,9 +16,17 @@ export default class PromotionsPage extends Component{
     }
 
     async componentDidMount(){
+        const { navigation } = this.props;
         console.log('Home Page Mounted');
-        await this.fetchInfo();
-        await this.fetchPromotions();
+        this.focusListener = navigation.addListener("focus", async () => {
+            await this.fetchInfo();
+            await this.fetchPromotions();
+        });
+    }
+
+    componentWillUnmount() {
+        // Remove the event listener
+        this.focusListener.remove();
     }
 
     async fetchInfo(){
@@ -74,3 +83,5 @@ export default class PromotionsPage extends Component{
         )
     }
 }
+
+export default withNavigation(PromotionsPage)

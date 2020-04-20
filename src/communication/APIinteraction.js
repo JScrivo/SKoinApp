@@ -48,7 +48,8 @@ export async function APIregisterBusiness(username, email, phoneNum, password, a
                 Email: email,
                 Phone: phoneNum,
                 Address: address,
-                Name: name
+                Name: name,
+                Enterprise: true
             })
         });
         if (!response.ok) {

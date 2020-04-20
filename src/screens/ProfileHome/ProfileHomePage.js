@@ -4,6 +4,7 @@ import {styles} from './Styles'
 import {HistoryItem, UserHeader} from '../../components/index/'
 import {ScrollView, Dimensions, Image} from 'react-native'
 import {APIgetInfo, APIgetQRURI} from '../../communication/APIinteraction'
+import {withNavigation} from 'react-navigation'
 class ProfileHomePage extends Component{
     constructor(props){
         super(props);
@@ -14,8 +15,17 @@ class ProfileHomePage extends Component{
     }
 
     async componentDidMount(){
-        console.log('Home Page Mounted');
-        await this.fetchInfo();
+        const { navigation } = this.props;
+        //console.log('Home Page Mounted');
+        //await this.fetchInfo();
+        this.focusListener = navigation.addListener("focus", async () => {
+            await this.fetchInfo();
+        });
+    }
+
+    componentWillUnmount() {
+        // Remove the event listener
+        this.focusListener.remove();
     }
 
     async fetchInfo(){
@@ -39,14 +49,19 @@ class ProfileHomePage extends Component{
     }
 
     async fetchHistroyCodes(){
-        var codes = [];
-        var uri;
-        for(var i = 0; i < this.state.userInfo.Transactions.length; i++){
-            uri = await APIgetQRURI(this.state.userInfo.Transactions[i].Id);
+        if (this.state.Transactions == null){
+            var codes = [];
+            var uri = await APIgetQRURI(this.state.userInfo.Transactions[0].Id);
             codes.push({uri: uri});
-        }
+            for(var i = 1; i < this.state.userInfo.Transactions.length; i++){
+                if(this.state.userInfo.Transactions[i].Id != this.state.userInfo.Transactions[i-1].Id){
+                    uri = await APIgetQRURI(this.state.userInfo.Transactions[i].Id);
+                }
+                codes.push({uri: uri});
+            }
 
-        this.setState({historyCodes: codes});
+            this.setState({historyCodes: codes});
+        }
     }
 
     render(){
@@ -84,4 +99,4 @@ class ProfileHomePage extends Component{
 }
 
 
-export default ProfileHomePage 
+export default withNavigation(ProfileHomePage) 

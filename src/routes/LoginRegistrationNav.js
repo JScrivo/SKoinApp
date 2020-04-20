@@ -26,7 +26,7 @@ export default class LoginRegistrationNav extends Component{
                     <Stack.Screen name = "LoginPage" component = {LoginPage} />
                     <Stack.Screen name = "UserRegister" children = {UserBusinessRegisterNav} />
                     {/* use UserPageNav if user logged with usual account and use BuisnessPageNav it is Buisness Account*/}
-                    <Stack.Screen name = "HomePage" children = {global.business ? BuisnessPageNav : UserPageNav} />
+                    <Stack.Screen name = "HomePage" children = {(global.business ? BuisnessPageNav : UserPageNav)} />
                 </Stack.Navigator>
             </NavigationContainer>
         )

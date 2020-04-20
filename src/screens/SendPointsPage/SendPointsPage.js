@@ -12,8 +12,9 @@ import {
   } from 'react-native';
 import { RNCamera as Camera } from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import {withNavigation} from 'react-navigation'
 
-export default class SendPointsPage extends Component{
+class SendPointsPage extends Component{
     
 
     constructor(props){
@@ -25,6 +26,14 @@ export default class SendPointsPage extends Component{
     }
 
     async componentDidMount(){
+        const { navigation } = this.props;
+
+        this.focusListener = navigation.addListener("focus", async () => {
+            await this.fetchInfo();
+        });
+    }
+
+    async fetchInfo(){
         var json = await APIgetInfo(global.sessionID, global.hash);
         if(json == null){
             alert('Error loading user info, returning to login');
@@ -32,6 +41,11 @@ export default class SendPointsPage extends Component{
         } else {
             this.setState({userInfo: json});
         }
+    }
+
+    componentWillUnmount() {
+        // Remove the event listener
+        this.focusListener.remove();
     }
 
     onSuccess = e => {
@@ -43,6 +57,7 @@ export default class SendPointsPage extends Component{
     async sendPoints(recipient, amount){
         if(await APIsendPoints(recipient, parseInt(amount), global.sessionID, global.hash)){
             alert('Points sent successfully');
+            await this.fetchInfo();
         } else {
             alert('Unable to send points, try again');
         }
@@ -79,3 +94,5 @@ export default class SendPointsPage extends Component{
         )
     }
 }
+
+export default withNavigation(SendPointsPage)
