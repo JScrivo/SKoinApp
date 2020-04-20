@@ -49,7 +49,7 @@ class ProfileHomePage extends Component{
     }
 
     async fetchHistroyCodes(){
-        if (this.state.Transactions == null){
+        if (this.state.Transactions != null){
             var codes = [];
             var uri = await APIgetQRURI(this.state.userInfo.Transactions[0].Id);
             codes.push({uri: uri});
