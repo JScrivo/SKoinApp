@@ -10,10 +10,15 @@ class ProfileHomePage extends Component{
         console.log('User Session: ' + global.sessionID);
         console.log('User Hash: ' + global.hash);
 
-        this.state = {json: {Balance: 'Loading', Name: 'Loading', Transactions: []}, qrURI: null}
+        this.state = {json: {Balance: 'Loading', Name: 'Loading', Transactions: []}, qrURI: null, historyCodes: null}
     }
 
     async componentDidMount(){
+        console.log('Home Page Mounted');
+        await this.fetchInfo();
+    }
+
+    async fetchInfo(){
         var json = await APIgetInfo(global.sessionID, global.hash);
         if(json == null){
             alert('Error loading user info, returning to login');
@@ -27,8 +32,21 @@ class ProfileHomePage extends Component{
             alert('Error retrieving QR code');
         } else {
             this.setState({qrURI: uri});
-            console.log(this.state.qrURI);
+            //console.log(this.state.qrURI);
         }
+
+        await this.fetchHistroyCodes();
+    }
+
+    async fetchHistroyCodes(){
+        var codes = [];
+        var uri;
+        for(var i = 0; i < this.state.json.Transactions.length; i++){
+            uri = await APIgetQRURI(this.state.json.Transactions[i].Id);
+            codes.push({uri: uri});
+        }
+
+        this.setState({historyCodes: codes});
     }
 
     render(){
@@ -38,7 +56,7 @@ class ProfileHomePage extends Component{
             transaction = this.state.json.Transactions[i];
 
             trasactionList.push(
-                <HistoryItem src={require('../../images/logo.png')} key={i} name={transaction.Name} balance={transaction.Amount 
+                <HistoryItem src={this.state.historyCodes == null ? require('../../images/logo.png') : this.state.historyCodes[i]} key={i} name={transaction.Name} balance={transaction.Amount 
                     + ' ' + (transaction.Outbound ? 'Sent' : 'Received')}/>
             );
         }

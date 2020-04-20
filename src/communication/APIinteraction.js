@@ -24,11 +24,11 @@ export async function APIregisterUser(username, email, phoneNum, password){
         }
         const response_1 = response;
         const json = await response_1.json();
-        console.log(json);
+        console.log('Register User: ' + JSON.stringify(json));
         return json.Success;
     }
     catch (error) {
-        console.log(error);
+        console.log('Register User:' + error);
         return false;
     }
 }
@@ -56,11 +56,11 @@ export async function APIregisterBusiness(username, email, phoneNum, password, a
         }
         const response_1 = response;
         const json = await response_1.json();
-        console.log(json);
+        console.log('Register Business: ' + JSON.stringify(json));
         return json.Success;
     }
     catch (error) {
-        console.log(error);
+        console.log('Register Business: ' + error);
         return false;
     }
 }
@@ -84,13 +84,13 @@ export async function APIlogin(username, password){
         }
         const response_1 = response;
         const json = await response_1.json();
-        console.log(json);
+        console.log('Login: ' + JSON.stringify(json));
         global.sessionID = json.Id;
         global.hash = userpass;
         return json.Success;
     }
     catch (error) {
-        console.log(error);
+        console.log('Login: ' + error);
         return false;
     }
 }
@@ -113,14 +113,14 @@ export async function APIgetInfo(sessionID, hash){
         }
         const response_1 = response;
         const json = await response_1.json();
-        console.log(json);
+        console.log('Get Info: ' + JSON.stringify(json));
         if(json.Success){
             return json;
         }
         return null;
     }
     catch (error) {
-        console.log(error);
+        console.log('Get Info: ' + error);
         return null;
     }
 }
@@ -142,43 +142,41 @@ export async function APIgetQRURI(id){
         }
         const response_1 = response;
         const json = await response_1.json();
-        console.log(json);
+        //console.log('Get QR Code: ' + JSON.stringify(json));
         return json.Data;
     }
     catch (error) {
-        console.log(error);
+        console.log('Get QR Code: ' + error);
         return null;
     }
 }
 
-export function APIsendPoints(amount, recipient){
+export async function APIsendPoints(amount, recipient){
 
-    return fetch(url + 'account/transfer', {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            Recipient: recipient,
-            Amount: amount,
-            Id: 12344,
-            Hash: 'ABUIAUION' //Placeholders until the api works
-        })
-        })
-        .then((response) => {
-            if (!response.ok){
-                throw Error(response.status.Text);
-            }
-            return response;
-        })
-        .then((response) => response.json())
-        .then((json) => {
-            console.log(json);
-            return true;
-        })
-        .catch((error) => {
-            console.log(error);
-            return false;
+    try {
+        const response = await fetch(url + 'account/transfer', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Recipient: recipient,
+                Amount: amount,
+                Id: 12344,
+                Hash: 'ABUIAUION' //Placeholders until the api works
+            })
         });
+        if (!response.ok) {
+            throw Error(response.status.Text);
+        }
+        const response_1 = response;
+        const json = await response_1.json();
+        console.log('Send points: ' + JSON.stringify(json));
+        return true;
+    }
+    catch (error) {
+        console.log('Send points: ' + error);
+        return false;
+    }
 }
