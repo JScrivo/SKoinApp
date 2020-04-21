@@ -31,10 +31,12 @@ class BuisnessAddPromotion extends Component{
                                         ImagePicker.openPicker({
                                             width: 300,
                                             height: 400,
-                                            cropping: true
+                                            cropping: true,
+                                            includeBase64: true,
+                                            includeExif: true
                                           }).then(image => {
-                                              console.log(this.state.img); 
-                                            this.setState({uri: image.path})
+                                              console.log(image.data); 
+                                              this.setState({uri: (`data:${image.mime};base64,` + image.data)})
                                           });
                                     }
                                 }><Text>Add picture</Text></Button>
