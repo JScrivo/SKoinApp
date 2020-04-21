@@ -3,7 +3,7 @@ import { Container, Content, View } from 'native-base'
 import {styles} from './Styles'
 import {UserHeader, PromotionCard} from '../../components/index'
 import {ScrollView} from 'react-native'
-import {APIgetInfo, APIgetPromotions} from '../../communication/APIinteraction'
+import {APIgetInfo, APIgetPromotions, APIlikePromotion} from '../../communication/APIinteraction'
 import {withNavigation} from 'react-navigation'
 
 class PromotionsPage extends Component{
@@ -49,6 +49,15 @@ class PromotionsPage extends Component{
         }
     }
 
+    async likePromotion(index){
+        console.log('Like Event: ' + index);
+        var promotion = this.state.promotions[index];
+        console.log('Liked promotion: ' + promotion);
+        //if(APIlikePromotion(promotion.Id)){
+        //    this.state.promotions[index].Likes++;
+        //}
+    }
+
     render(){
         var promotionList = [];
         var promotion;
@@ -64,6 +73,7 @@ class PromotionsPage extends Component{
                     description={promotion.Description}
                     likesNum={promotion.Likes}
                     duration={promotion.DaysLeft}
+                    likeEvent={()=>{ return this.likePromotion(i); }}
                     key={i}/>
             );
         }

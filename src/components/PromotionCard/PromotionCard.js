@@ -37,7 +37,7 @@ export default class PromotionCard extends Component{
                 <CardItem>
 
               <Left>
-                <Button transparent>
+                <Button transparent onPress={this.props.likeEvent}>
                   <Icon active name="thumbs-up" />
                     <Text>{this.props.likesNum}</Text>
                 </Button>

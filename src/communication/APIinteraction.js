@@ -242,3 +242,32 @@ export async function APIcreatePromotion(title, iconURI, coverURI, cost, duratio
         return false;
     }
 }
+
+export async function APIlikePromotion(promotionID, id, hash){
+
+    try {
+        const response = await fetch(url + 'promotions/like', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                PromotionId: promotionID,
+                Id: id,
+                Hash: hash
+            })
+        });
+        if (!response.ok) {
+            throw Error(response.status.Text);
+        }
+        const response_1 = response;
+        const json = await response_1.json();
+        console.log('Like Promotion: ' + JSON.stringify(json));
+        return json.Success;
+    }
+    catch (error) {
+        console.log('Like Promotion: ' + error);
+        return false;
+    }
+}
