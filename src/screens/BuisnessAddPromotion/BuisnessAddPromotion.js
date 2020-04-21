@@ -4,6 +4,7 @@ import {styles} from './Styles'
 import {Image} from 'react-native'
 import {HistoryItem, UserHeader} from '../../components/index/'
 import ImagePicker from 'react-native-image-crop-picker';
+import {APIcreatePromotion} from '../../communication/APIinteraction'
 class BuisnessAddPromotion extends Component{
     constructor(props){
         super(props);
@@ -40,14 +41,26 @@ class BuisnessAddPromotion extends Component{
                                 <Button transparent onPress={this.reset}><Text>Cancel</Text></Button>
                             </View>
                             <Item regular style={styles.loginPageInput}>
-                                <Input autoCapitalize="none" placeholder="Title"/>
+                                <Input autoCapitalize="none" placeholder="Title"
+                                onChangeText = {val => this.setState({title: val})}/>
                             </Item>
                             <Item regular style={styles.loginPageInput}>
-                                <Input autoCapitalize="none" placeholder="Points"/>
+                                <Input autoCapitalize="none" placeholder="Points" keyboardType="numeric"
+                                onChangeText = {val => this.setState({points: val})}/>
                             </Item>
-                            <Textarea style={styles.description} rowSpan={5} bordered placeholder="Description"/>
+                            <Item regular style={styles.loginPageInput}>
+                                <Input autoCapitalize="none" placeholder="Duration (Days)" keyboardType="numeric"
+                                onChangeText = {val => this.setState({duration: val})}/>
+                            </Item>
+                            <Textarea style={styles.description} rowSpan={5} bordered placeholder="Description"
+                            onChangeText = {val => this.setState({desc: val})}/>
                             
-                            <Button style={styles.loginPageButton}>
+                            <Button style={styles.loginPageButton} onPress={async ()=>{
+                                if(await APIcreatePromotion(this.state.title, this.state.uri, this.state.uri, parseInt(this.state.points), parseInt(this.state.duration), this.state.desc, global.sessionID, global.hash)){
+                                    alert('Promotion created');
+                                }
+                                else alert('Error creating promotion, try again');
+                            }}>
                                 <Text>Add New Promotion</Text>
                             </Button>
                 </Form>

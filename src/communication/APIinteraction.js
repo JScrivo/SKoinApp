@@ -208,3 +208,37 @@ export async function APIsendPoints(recipient, amount, id, hash){
         return false;
     }
 }
+
+export async function APIcreatePromotion(title, iconURI, coverURI, cost, duration, desc, sessionID, hash){
+
+    try {
+        const response = await fetch(url + 'enterprise/promotion', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Title: title,
+                IconURI: iconURI,
+                CoverURI: coverURI,
+                Cost: cost,
+                Description: desc,
+                Days: duration,
+                Id: sessionID,
+                Hash: hash
+            })
+        });
+        if (!response.ok) {
+            throw Error(response.status.Text);
+        }
+        const response_1 = response;
+        const json = await response_1.json();
+        console.log('Create Promotion: ' + JSON.stringify(json));
+        return json.Success;
+    }
+    catch (error) {
+        console.log('Create Promotion: ' + error);
+        return false;
+    }
+}
