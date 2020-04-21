@@ -3,8 +3,53 @@ import { Container, Header, Content, Text, Left, Body, Right, Button, Icon, Titl
 import {styles} from './Styles'
 import {HistoryItem, UserHeader} from '../../components/index/'
 import {ScrollView, Dimensions} from 'react-native'
+import {APIgetInfo, APIgetQRURI} from '../../communication/APIinteraction'
+import {withNavigation} from 'react-navigation'
 class BuisnessHomePage extends Component{
+    constructor(props){
+        super(props);
+        console.log('User Session: ' + global.sessionID);
+        console.log('User Hash: ' + global.hash);
+
+        this.state = {userInfo: {Promotions: []}}
+    }
+
+    async componentDidMount(){
+        const { navigation } = this.props;
+        //console.log('Home Page Mounted');
+        //await this.fetchInfo();
+        this.focusListener = navigation.addListener("focus", async () => {
+            await this.fetchInfo();
+        });
+    }
+
+    componentWillUnmount() {
+        // Remove the event listener
+        this.focusListener.remove();
+    }
+
+    async fetchInfo(){
+        var json = await APIgetInfo(global.sessionID, global.hash);
+        if(json == null){
+            alert('Error loading business info, returning to login');
+            this.props.navigation.navigate('LoginPage');
+        } else {
+            this.setState({userInfo: json});
+        }
+    }
+
+
     render(){
+        var promotionList = [];
+        var promotion;
+        for(var i = 0; i < this.state.userInfo.Promotions.length; i++){
+            promotion = this.state.userInfo.Promotions[i];
+
+            promotionList.push(
+                <HistoryItem src={{uri: promotion.CoverURI}} key={i} name={promotion.Title} balance={promotion.Cost}/>
+            );
+        }
+
         return(
             <Container>
                 <Content contentContainerStyle={styles.contentBorder} scrollEnabled={false}>
@@ -15,7 +60,7 @@ class BuisnessHomePage extends Component{
                     </View>
                     </View>
                         <ScrollView>
-                            <HistoryItem src={require('../../images/logo.png')} name='hello' balance='120' onPress={() => console.log("Hello I am a Button")}/>
+                            {promotionList}
                         </ScrollView>
                     <Button style={styles.addNewPromotion} onPress={()=>{
                         this.props.navigation.navigate("BuisnessAddPromotion");
@@ -30,4 +75,4 @@ class BuisnessHomePage extends Component{
 }
 
 
-export default BuisnessHomePage 
+export default withNavigation(BuisnessHomePage) 

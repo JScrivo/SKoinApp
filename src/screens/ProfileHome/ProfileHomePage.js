@@ -48,6 +48,7 @@ class ProfileHomePage extends Component{
     }
 
     async fetchHistroyCodes(){
+        //This reduces requests to the server
         if (this.state.Transactions != []){
             var codes = [];
             var uri = await APIgetQRURI(this.state.userInfo.Transactions[0].Id);
