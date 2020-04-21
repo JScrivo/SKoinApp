@@ -20,6 +20,7 @@ class ProfileHomePage extends Component{
         //await this.fetchInfo();
         this.focusListener = navigation.addListener("focus", async () => {
             await this.fetchInfo();
+            await this.fetchHistroyCodes();
         });
     }
 
@@ -44,18 +45,17 @@ class ProfileHomePage extends Component{
             this.setState({qrURI: uri});
             //console.log(this.state.qrURI);
         }
-
-        await this.fetchHistroyCodes();
     }
 
     async fetchHistroyCodes(){
-        if (this.state.Transactions != null){
+        if (this.state.Transactions != []){
             var codes = [];
             var uri = await APIgetQRURI(this.state.userInfo.Transactions[0].Id);
             codes.push({uri: uri});
             for(var i = 1; i < this.state.userInfo.Transactions.length; i++){
                 if(this.state.userInfo.Transactions[i].Id != this.state.userInfo.Transactions[i-1].Id){
                     uri = await APIgetQRURI(this.state.userInfo.Transactions[i].Id);
+                    console.log("Pretty leg: ", uri);
                 }
                 codes.push({uri: uri});
             }
