@@ -49,12 +49,12 @@ class BusinessRegisterPage extends Component{
                         />
                     </Item>
                     <Item regular style={styles.loginPageInput}>
-                        <Input autoCapitalize="none" placeholder="Password"
+                        <Input autoCapitalize="none" placeholder="Password" secureTextEntry={true}
                         onChangeText = {val => this.setState({password: val})}
                         />
                     </Item>
                     <Item regular style={styles.loginPageInput}>
-                        <Input autoCapitalize="none" placeholder="Confirm Password"
+                        <Input autoCapitalize="none" placeholder="Confirm Password" secureTextEntry={true}
                         onChangeText = {val => this.setState({password2: val})}
                         />
                     </Item>

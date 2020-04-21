@@ -24,7 +24,7 @@ class LoginPage extends Component{
                                 />
                             </Item>
                             <Item regular style={styles.loginPageInput}>
-                                <Input autoCapitalize="none" placeholder="Password"
+                                <Input autoCapitalize="none" placeholder="Password" secureTextEntry={true}
                                 onChangeText = {val => this.setState({password: val})}
                                 />
                             </Item>
