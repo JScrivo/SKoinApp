@@ -9,15 +9,13 @@ class ProfileHomePage extends Component{
     constructor(props){
         super(props);
         console.log('User Session: ' + global.sessionID);
-        console.log('User Hash: ' + global.hash);
+        //console.log('User Hash: ' + global.hash);
 
         this.state = {userInfo: {Balance: 'Loading', Name: 'Loading', Transactions: []}, qrURI: null, historyCodes: null}
     }
 
     async componentDidMount(){
         const { navigation } = this.props;
-        //console.log('Home Page Mounted');
-        //await this.fetchInfo();
         this.focusListener = navigation.addListener("focus", async () => {
             await this.fetchInfo();
             await this.fetchHistroyCodes();
@@ -25,7 +23,6 @@ class ProfileHomePage extends Component{
     }
 
     componentWillUnmount() {
-        // Remove the event listener
         this.focusListener.remove();
     }
 
@@ -43,7 +40,6 @@ class ProfileHomePage extends Component{
             alert('Error retrieving QR code');
         } else {
             this.setState({qrURI: uri});
-            //console.log(this.state.qrURI);
         }
     }
 

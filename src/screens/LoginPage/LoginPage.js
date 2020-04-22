@@ -9,7 +9,6 @@ class LoginPage extends Component{
         global.business = false;
         global.hash = '';
         global.json = {}
-        //console.log('User Session: ' + global.sessionID);
     }
 
     render(){
@@ -29,7 +28,6 @@ class LoginPage extends Component{
                                 />
                             </Item>
                             <Button style={styles.loginPageButton} onPress={async ()=>{
-                                //this.props.navigation.navigate('HomePage');
                                 if(await APIlogin(this.state.username, this.state.password)){
                                     if(global.business){
                                         this.props.navigation.navigate('BusiHomePage');
@@ -38,7 +36,6 @@ class LoginPage extends Component{
                                     }
                                 }
                                 else alert('Username or Password is incorrect, please try again.');
-                                //APIregister();
                             }}>
                                 <Text>Login</Text>
                             </Button>

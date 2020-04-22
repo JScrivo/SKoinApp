@@ -10,7 +10,7 @@ class PromotionsPage extends Component{
     constructor(props){
         super(props);
         console.log('User Session: ' + global.sessionID);
-        console.log('User Hash: ' + global.hash);
+        //console.log('User Hash: ' + global.hash);
 
         this.state = {userInfo: {Balance: 'Loading', Name: 'Loading'}, promotions: []}
     }
@@ -25,7 +25,6 @@ class PromotionsPage extends Component{
     }
 
     componentWillUnmount() {
-        // Remove the event listener
         this.focusListener.remove();
     }
 
@@ -53,9 +52,6 @@ class PromotionsPage extends Component{
         console.log('Like Event: ' + index);
         var promotion = this.state.promotions[index];
         console.log('Liked promotion: ' + promotion);
-        //if(APIlikePromotion(promotion.Id)){
-        //    this.state.promotions[index].Likes++;
-        //}
     }
 
     render(){

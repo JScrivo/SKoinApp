@@ -7,7 +7,6 @@ export default class PromotionCard extends Component{
         super(props)
     }
     render(){
-        // var src = require(this.props.uri);
         var companyName = 'hello';
         return(
             <Card>

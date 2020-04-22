@@ -35,7 +35,6 @@ class BuisnessAddPromotion extends Component{
                                             includeBase64: true,
                                             includeExif: true
                                           }).then(image => {
-                                              console.log(image.data); 
                                               this.setState({uri: (`data:${image.mime};base64,` + image.data)})
                                           });
                                     }

@@ -20,7 +20,7 @@ class SendPointsPage extends Component{
     constructor(props){
         super(props);
         console.log('User Session: ' + global.sessionID);
-        console.log('User Hash: ' + global.hash);
+        //console.log('User Hash: ' + global.hash);
 
         this.state = {userInfo: {Balance: 'Loading', Name: 'Loading'}, scannerEnabled: false}
     }
@@ -44,12 +44,10 @@ class SendPointsPage extends Component{
     }
 
     componentWillUnmount() {
-        // Remove the event listener
         this.focusListener.remove();
     }
 
     onSuccess = e => {
-        //alert(JSON.stringify(e));
         this.setState({scannerEnabled: false});
         this.sendPoints(e.data, this.state.amount);
       };

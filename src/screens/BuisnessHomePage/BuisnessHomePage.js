@@ -9,22 +9,19 @@ class BuisnessHomePage extends Component{
     constructor(props){
         super(props);
         console.log('User Session: ' + global.sessionID);
-        console.log('User Hash: ' + global.hash);
+        //console.log('User Hash: ' + global.hash);
 
         this.state = {userInfo: {Promotions: []}}
     }
 
     async componentDidMount(){
         const { navigation } = this.props;
-        //console.log('Home Page Mounted');
-        //await this.fetchInfo();
         this.focusListener = navigation.addListener("focus", async () => {
             await this.fetchInfo();
         });
     }
 
     componentWillUnmount() {
-        // Remove the event listener
         this.focusListener.remove();
     }
 
