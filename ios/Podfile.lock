@@ -19,6 +19,38 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - Permission-BluetoothPeripheral (2.1.2):
+    - RNPermissions
+  - Permission-Calendars (2.1.2):
+    - RNPermissions
+  - Permission-Camera (2.1.2):
+    - RNPermissions
+  - Permission-Contacts (2.1.2):
+    - RNPermissions
+  - Permission-FaceID (2.1.2):
+    - RNPermissions
+  - Permission-LocationAlways (2.1.2):
+    - RNPermissions
+  - Permission-LocationWhenInUse (2.1.2):
+    - RNPermissions
+  - Permission-MediaLibrary (2.1.2):
+    - RNPermissions
+  - Permission-Microphone (2.1.2):
+    - RNPermissions
+  - Permission-Motion (2.1.2):
+    - RNPermissions
+  - Permission-Notifications (2.1.2):
+    - RNPermissions
+  - Permission-PhotoLibrary (2.1.2):
+    - RNPermissions
+  - Permission-Reminders (2.1.2):
+    - RNPermissions
+  - Permission-Siri (2.1.2):
+    - RNPermissions
+  - Permission-SpeechRecognition (2.1.2):
+    - RNPermissions
+  - Permission-StoreKit (2.1.2):
+    - RNPermissions
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
     - FBLazyVector (= 0.61.5)
@@ -182,6 +214,14 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
   - React-jsinspector (0.61.5)
+  - react-native-camera (3.23.1):
+    - React
+    - react-native-camera/RCT (= 3.23.1)
+    - react-native-camera/RN (= 3.23.1)
+  - react-native-camera/RCT (3.23.1):
+    - React
+  - react-native-camera/RN (3.23.1):
+    - React
   - react-native-safe-area-context (0.7.3):
     - React
   - React-RCTActionSheet (0.61.5):
@@ -223,12 +263,24 @@ PODS:
     - React
   - RNGestureHandler (1.6.0):
     - React
+  - RNImageCropPicker (0.28.0):
+    - React-Core
+    - React-RCTImage
+    - RNImageCropPicker/QBImagePickerController (= 0.28.0)
+    - RSKImageCropper
+  - RNImageCropPicker/QBImagePickerController (0.28.0):
+    - React-Core
+    - React-RCTImage
+    - RSKImageCropper
+  - RNPermissions (2.1.2):
+    - React
   - RNReanimated (1.7.0):
     - React
   - RNScreens (2.0.0-beta.13):
     - React
   - RNVectorIcons (6.6.0):
     - React
+  - RSKImageCropper (2.2.3)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -237,6 +289,22 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - Permission-BluetoothPeripheral (from `../node_modules/react-native-permissions/ios/BluetoothPeripheral.podspec`)
+  - Permission-Calendars (from `../node_modules/react-native-permissions/ios/Calendars.podspec`)
+  - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera.podspec`)
+  - Permission-Contacts (from `../node_modules/react-native-permissions/ios/Contacts.podspec`)
+  - Permission-FaceID (from `../node_modules/react-native-permissions/ios/FaceID.podspec`)
+  - Permission-LocationAlways (from `../node_modules/react-native-permissions/ios/LocationAlways.podspec`)
+  - Permission-LocationWhenInUse (from `../node_modules/react-native-permissions/ios/LocationWhenInUse.podspec`)
+  - Permission-MediaLibrary (from `../node_modules/react-native-permissions/ios/MediaLibrary.podspec`)
+  - Permission-Microphone (from `../node_modules/react-native-permissions/ios/Microphone.podspec`)
+  - Permission-Motion (from `../node_modules/react-native-permissions/ios/Motion.podspec`)
+  - Permission-Notifications (from `../node_modules/react-native-permissions/ios/Notifications.podspec`)
+  - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary.podspec`)
+  - Permission-Reminders (from `../node_modules/react-native-permissions/ios/Reminders.podspec`)
+  - Permission-Siri (from `../node_modules/react-native-permissions/ios/Siri.podspec`)
+  - Permission-SpeechRecognition (from `../node_modules/react-native-permissions/ios/SpeechRecognition.podspec`)
+  - Permission-StoreKit (from `../node_modules/react-native-permissions/ios/StoreKit.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
@@ -248,6 +316,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-camera (from `../node_modules/react-native-camera`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -262,6 +331,8 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -270,6 +341,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - boost-for-react-native
+    - RSKImageCropper
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -282,6 +354,38 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  Permission-BluetoothPeripheral:
+    :path: "../node_modules/react-native-permissions/ios/BluetoothPeripheral.podspec"
+  Permission-Calendars:
+    :path: "../node_modules/react-native-permissions/ios/Calendars.podspec"
+  Permission-Camera:
+    :path: "../node_modules/react-native-permissions/ios/Camera.podspec"
+  Permission-Contacts:
+    :path: "../node_modules/react-native-permissions/ios/Contacts.podspec"
+  Permission-FaceID:
+    :path: "../node_modules/react-native-permissions/ios/FaceID.podspec"
+  Permission-LocationAlways:
+    :path: "../node_modules/react-native-permissions/ios/LocationAlways.podspec"
+  Permission-LocationWhenInUse:
+    :path: "../node_modules/react-native-permissions/ios/LocationWhenInUse.podspec"
+  Permission-MediaLibrary:
+    :path: "../node_modules/react-native-permissions/ios/MediaLibrary.podspec"
+  Permission-Microphone:
+    :path: "../node_modules/react-native-permissions/ios/Microphone.podspec"
+  Permission-Motion:
+    :path: "../node_modules/react-native-permissions/ios/Motion.podspec"
+  Permission-Notifications:
+    :path: "../node_modules/react-native-permissions/ios/Notifications.podspec"
+  Permission-PhotoLibrary:
+    :path: "../node_modules/react-native-permissions/ios/PhotoLibrary.podspec"
+  Permission-Reminders:
+    :path: "../node_modules/react-native-permissions/ios/Reminders.podspec"
+  Permission-Siri:
+    :path: "../node_modules/react-native-permissions/ios/Siri.podspec"
+  Permission-SpeechRecognition:
+    :path: "../node_modules/react-native-permissions/ios/SpeechRecognition.podspec"
+  Permission-StoreKit:
+    :path: "../node_modules/react-native-permissions/ios/StoreKit.podspec"
   RCTRequired:
     :path: "../node_modules/react-native/Libraries/RCTRequired"
   RCTTypeSafety:
@@ -300,6 +404,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-camera:
+    :path: "../node_modules/react-native-camera"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-RCTActionSheet:
@@ -326,6 +432,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/masked-view"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNImageCropPicker:
+    :path: "../node_modules/react-native-image-crop-picker"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -342,6 +452,22 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  Permission-BluetoothPeripheral: 70ce00e7b9e664286d99c074c84710d2b20af654
+  Permission-Calendars: a9d02fc890f2dc87d12a9fe399ff90a85269a773
+  Permission-Camera: d7cc71123bca7f01a98f72e1cd1444fa00280375
+  Permission-Contacts: bf4e54d9987862b0f288aff387ac4f3399cf148e
+  Permission-FaceID: c16fe1d1c59048448e97b58b0df8bfaf34d6a741
+  Permission-LocationAlways: 1d1559d25d41771166b5b71eabf2aa5f5704a27f
+  Permission-LocationWhenInUse: 1944b00d437d66da3eb8319d69ed9ebe460fd756
+  Permission-MediaLibrary: d810a64dc56962eaa700034bcde7ba9b99da3c83
+  Permission-Microphone: 80e83ed15d61740e48a1b34a73f89302411ca005
+  Permission-Motion: 662285cf430cf34738ee19778d608d767ac267ae
+  Permission-Notifications: bd45282a64288d61a5240829c383a568c5436cb0
+  Permission-PhotoLibrary: 20acb8db95e00912feb299d309cf319e5a05c676
+  Permission-Reminders: e6ecb35b4c9df45ccb53745e037233a4cfce17ee
+  Permission-Siri: d055b32c69904db36947a56a84ddd0523944f4ca
+  Permission-SpeechRecognition: ba8003d69ca5afce62d496daa1f9e6d80b8a9897
+  Permission-StoreKit: 3fae75737635605b36a3d12725b1444e0acfd1ce
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -351,7 +477,8 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
+  react-native-camera: 6fe72fd0a85732e2449928f9c59a2e0bf661ad3b
+  react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -362,13 +489,16 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  RNCMaskedView: a88953beefbd347a29072d9eba90e42945fe291e
+  RNCMaskedView: e5b99bc191945f157adeede68da9d424462de177
   RNGestureHandler: dde546180bf24af0b5f737c8ad04b6f3fa51609a
+  RNImageCropPicker: cf129d17e042ce3e96fb9ada967c28f21f977c82
+  RNPermissions: c6ef18d3f039ddf72f05da3ad0e712b7f494b76d
   RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
   RNScreens: ba539a5086136eb356e43699cb588a80369763ca
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
+  RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 9f5a0925da46acb09659add4e5fd832856fa1489
+PODFILE CHECKSUM: ab4af4a0ae1679e912a15abfd0ec579dec419ee3
 
 COCOAPODS: 1.8.4

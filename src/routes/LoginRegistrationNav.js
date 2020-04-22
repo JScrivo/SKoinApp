@@ -5,8 +5,15 @@ import { NavigationContainer} from '@react-navigation/native';
 import React, { Component } from 'react';
 import UserBusinessRegisterNav from './UserBusinessRegisterNav'
 import UserPageNav from './UserPageNav'
+import BuisnessPageNav from './BuisnessPageNav'
+import {pass} from '../communication/APIinteraction'
 const Stack = createStackNavigator();
 export default class LoginRegistrationNav extends Component{
+
+    constructor(props){
+        super(props)
+    }
+
     render(){
         function createMyStack(){
 
@@ -17,7 +24,10 @@ export default class LoginRegistrationNav extends Component{
                 <Stack.Navigator headerMode='none'>
                     <Stack.Screen name = "LoginPage" component = {LoginPage} />
                     <Stack.Screen name = "UserRegister" children = {UserBusinessRegisterNav} />
-                    <Stack.Screen name = "HomePage" children = {UserPageNav} />
+                    {/* use UserPageNav if user logged with usual account and use BuisnessPageNav it is Buisness Account*/}
+                    <Stack.Screen name = "BusiHomePage" children = {BuisnessPageNav} />
+                    <Stack.Screen name = "UserHomePage" children = {UserPageNav} />
+
                 </Stack.Navigator>
             </NavigationContainer>
         )

@@ -7,19 +7,17 @@ export const styles = EStyleSheet.create({
         padding: 5
     },
  
-    scan:{
+    addNewPromotion:{
         borderWidth: 0.5,
-        borderColor: '#a7a6ab',
+        borderColor: '#000',
         borderRadius: 16,
         marginTop: 20,
-        height: 310,
-        flexDirection: 'column',
-        justifyContent: 'space-around'
+        justifyContent: 'center'
     },
 
 
-    scanIcon: {
-        fontSize: 170
+    addIcon: {
+        fontSize: 50
     },
 
     history: {

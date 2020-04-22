@@ -7,8 +7,7 @@ import {TouchableOpacity} from 'react-native'
 export default  HistoryItem = (props) => {
 
         return(
-          <TouchableOpacity>
-            <ListItem thumbnail>
+            <ListItem thumbnail button={true} onPress={props.onPress}>
               <Left>
                 <Thumbnail square source={props.src} />
               </Left>
@@ -17,6 +16,5 @@ export default  HistoryItem = (props) => {
                 <Text note numberOfLines={1}>{props.balance}</Text>
               </Body>
             </ListItem>
-          </TouchableOpacity>
         )
 }

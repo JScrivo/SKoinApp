@@ -1,7 +1,17 @@
 import React, {Component} from 'react'; 
 import {Container, Header, Title, Content, Text, Button, Form, Item, Label, Input, Footer, View} from 'native-base'
 import {styles} from './Styles'
+import {APIlogin} from '../../communication/APIinteraction'
 class LoginPage extends Component{
+    constructor(props){
+        super(props);
+        global.sessionID = '';
+        global.business = false;
+        global.hash = '';
+        global.json = {}
+        //console.log('User Session: ' + global.sessionID);
+    }
+
     render(){
         return(
             <Container>
@@ -9,13 +19,26 @@ class LoginPage extends Component{
                     <Text style={styles.loginPageHeader}>$Points</Text>
                         <Form style={{alignItems: 'center'}}>
                             <Item regular style={styles.loginPageInput}>
-                                <Input autoCapitalize="none" placeholder="Email"/>
+                                <Input autoCapitalize="none" placeholder="Username"
+                                onChangeText = {val => this.setState({username: val})}
+                                />
                             </Item>
                             <Item regular style={styles.loginPageInput}>
-                                <Input autoCapitalize="none" placeholder="Password"/>
+                                <Input autoCapitalize="none" placeholder="Password" secureTextEntry={true}
+                                onChangeText = {val => this.setState({password: val})}
+                                />
                             </Item>
-                            <Button style={styles.loginPageButton} onPress={()=>{
-                                this.props.navigation.navigate('HomePage');
+                            <Button style={styles.loginPageButton} onPress={async ()=>{
+                                //this.props.navigation.navigate('HomePage');
+                                if(await APIlogin(this.state.username, this.state.password)){
+                                    if(global.business){
+                                        this.props.navigation.navigate('BusiHomePage');
+                                    } else {
+                                        this.props.navigation.navigate('UserHomePage');
+                                    }
+                                }
+                                else alert('Username or Password is incorrect, please try again.');
+                                //APIregister();
                             }}>
                                 <Text>Login</Text>
                             </Button>

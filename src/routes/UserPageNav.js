@@ -1,5 +1,5 @@
 import {createSwitchNavigator, createAppContainer} from 'react-navigation'
-import { ProfileHomePage, PromotionsPage, SendPointsPage } from '../screens/index'
+import { ProfileHomePage, PromotionsPage, SendPointsPage, BuisnessHomePage, LoginPage } from '../screens/index'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import React, { Component } from 'react';
 
@@ -10,6 +10,7 @@ export default function UserPageNav(){
             <Drawer.Screen name="Home" component={ProfileHomePage} />
             <Drawer.Screen name="Promotions" component={PromotionsPage} />
             <Drawer.Screen name="Send Points" component={SendPointsPage} />
+            <Drawer.Screen name="Logout" component={LoginPage}/>
         </Drawer.Navigator>
     )
 }
